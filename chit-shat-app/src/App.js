@@ -12,7 +12,7 @@ function App() {
     axios.get('/messages/sync').then(res => {
       setMessages(res.data);
     })
-  }, [messages]); // Fix za poruke ali sjebe pushera
+  }, []); // Fix za poruke ali sjebe pushera messages u brackets
 
   useEffect(() => {
 
@@ -22,7 +22,6 @@ function App() {
 
     const channel = pusher.subscribe('messages');
     channel.bind('inserted', (newMessage) => {
-      // alert(JSON.stringify(newMessage)); Debugging tool
       setMessages([...messages,newMessage]);
     });
 
